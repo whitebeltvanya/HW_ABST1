@@ -1,8 +1,23 @@
 public abstract class Account {
-    long amount;
+    protected long amountSum;
 
-    public abstract boolean add(long amount) ;
+    public Account(long amount) {
+        this.amountSum = amount;
+    }
+
+    public abstract boolean add(long amount);
+
     public abstract boolean pay(long amount);
 
+    public boolean transfer(Account account, long amount) {
+        boolean ret;
+        if (this.pay(amount)) {
+            ret = account.add(amount);
+        } else ret = false;
+        return ret;
+    }
 
+    long getBalance() {
+        return amountSum;
+    }
 }
