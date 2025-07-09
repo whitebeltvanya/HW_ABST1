@@ -1,19 +1,47 @@
+// Source : netology
 public class Main {
     public static void main(String[] args) {
-        Account accSimple = new SimpleAccount(400);
-        accSimple.add(200);
-        accSimple.pay(100);
-        System.out.println("accSimple: " + accSimple.getBalance());
+        CreditAccount creditAccount = new CreditAccount(50000);
+        SimpleAccount simpleAccount = new SimpleAccount();
 
-        Account accCredit = new CreditAccount(100, 1000);
-        accCredit.pay(200);
-        accCredit.add(200);
-        accCredit.pay(500);
-        accCredit.add(400);
-        System.out.println("accCredit: " + accCredit.getBalance());
+        System.out.println("Добавляем на дебет счет 120 000 руб.");
+        System.out.println("Результат: " + simpleAccount.add(120_000));
+        System.out.println("Баланс дебет счета: " + simpleAccount.getBalance() + "\n");
 
-        accSimple.transfer(accCredit, 100);
-        System.out.println("accSimple: " + accSimple.getBalance());
-        System.out.println("accCredit: " + accCredit.getBalance());
+        System.out.println("Снимаем с дебет счета 18 000 руб.");
+        System.out.println("Результат: " + simpleAccount.pay(18_000));
+        System.out.println("Баланс дебет счета: " + simpleAccount.getBalance() + "\n");
+
+        System.out.println("Снимаем с дебет счета 120 000 руб.");
+        System.out.println("Результат: " + simpleAccount.pay(120_000));
+        System.out.println("Баланс дебет счета: " + simpleAccount.getBalance() + "\n");
+
+
+        System.out.println("Добавляем на кредит счет 120 000 руб.");
+        System.out.println("Результат: " + creditAccount.add(120_000));
+        System.out.println("Баланс кредит счета: " + creditAccount.getBalance() + "\n");
+
+        System.out.println("Снимаем с кредит счета 18 000 руб.");
+        System.out.println("Результат: " + creditAccount.pay(18_000));
+        System.out.println("Баланс кредит счета: " + creditAccount.getBalance() + "\n");
+
+        System.out.println("Снимаем с кредит счета 120 000 руб.");
+        System.out.println("Результат: " + creditAccount.pay(120_000));
+        System.out.println("Баланс кредит счета: " + creditAccount.getBalance() + "\n");
+
+
+        System.out.println("Транзакция с дебет на кредит 100000");
+        System.out.println("Результат: " + simpleAccount.transfer(creditAccount, 100_000));
+        System.out.println("Баланс дебет: " + simpleAccount.getBalance() + ", Баланс кредит: " + creditAccount.getBalance() + "\n");
+        System.out.println("Транзакция с дебет на кредит 8000");
+        System.out.println("Результат: " + simpleAccount.transfer(creditAccount, 8000));
+        System.out.println("Баланс дебет: " + simpleAccount.getBalance() + ", Баланс кредит: " + creditAccount.getBalance() + "\n");
+        System.out.println("Транзакция с кредит на дебет 100000");
+        System.out.println("Результат: " + creditAccount.transfer(simpleAccount, 100_000));
+        System.out.println("Баланс дебет: " + simpleAccount.getBalance() + ", Баланс кредит: " + creditAccount.getBalance() + "\n");
+        System.out.println("Транзакция с кредит на дебет 8000");
+        System.out.println("Результат: " + creditAccount.transfer(simpleAccount, 8000));
+        System.out.println("Баланс дебет: " + simpleAccount.getBalance() + ", Баланс кредит: " + creditAccount.getBalance() + "\n");
     }
 }
+

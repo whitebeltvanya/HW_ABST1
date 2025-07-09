@@ -1,30 +1,30 @@
-import static java.lang.Math.abs;
-
+// Source : netology
 public class CreditAccount extends Account {
     protected long creditLimit;
 
-    public CreditAccount(long amount, long creditLimit) {
-        super(0);
-        this.creditLimit = -abs(creditLimit);
+    public CreditAccount(long creditLimit) {
+        this.amountSum = creditLimit;
+        this.creditLimit = creditLimit;
     }
 
     @Override
     public boolean add(long amount) {
-        boolean ret;
-        if (amountSum + abs(amount) <= 0) {
-            amountSum += abs(amount);
-            ret = true;
-        } else ret = false;
-        return ret;
+        if (amountSum + amount > creditLimit) {
+            return false;
+        } else {
+            amountSum += amount;
+            return true;
+        }
     }
 
     @Override
     public boolean pay(long amount) {
-        boolean ret;
-        if (amountSum - abs(amount) >= creditLimit) {
-            amountSum -= abs(amount);
-            ret = true;
-        } else ret = false;
-        return ret;
+        if (amountSum - amount < 0) {
+            return false;
+        } else {
+            amountSum -= amount;
+            return true;
+        }
     }
+
 }

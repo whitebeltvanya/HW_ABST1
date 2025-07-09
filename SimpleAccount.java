@@ -1,27 +1,20 @@
-import static java.lang.Math.abs;
-
+// Source : netology
 public class SimpleAccount extends Account {
-
-    public SimpleAccount(long amount) {
-        super(amount);
-    }
 
     @Override
     public boolean add(long amount) {
-        amountSum += abs(amount);
-        return true;
+        amountSum += amount;
+        return amountSum >= 0;
     }
 
     @Override
     public boolean pay(long amount) {
-        boolean ret;
-        if (amountSum - abs(amount) < 0)
-            ret = false;
-        else {
-            amountSum -= abs(amount);
-            ret = true;
+        if (amountSum < amount) {
+            return false;
+        } else {
+            amountSum -= amount;
+            return true;
         }
-        return ret;
     }
 
 }
